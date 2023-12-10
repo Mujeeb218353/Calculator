@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #calculator {
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 10px 10px 100px rgba(0, 0, 0, 0.5);
+            background-color: #fff;
+        }
+
+        input {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 30px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            text-align: end;
+        }
+
+        button {
+            width: 100px;
+            height: 100px;
+            font-size: 18px;
+            margin: 5px;
+            cursor: pointer;
+            background: cornflowerblue;
+            border: transparent;
+            border-radius: 5px;
+        }
+
+        button:hover{
+            background: blue;
+        }
+    </style>
+    <title>Simple Calculator</title>
+</head>
+<body>
+
+<div id="calculator">
+    <label for="display">
+        <input type="text" id="display" disabled>
+    </label>
+    <br>
+    <button onclick="square()" class="btn">X<sup>2</sup></button>
+    <button onclick="squareRoot()" class="btn">&#8730;</button>
+    <button onclick="clearDisplay()" class="btn">C</button>
+    <button onclick="clearOne()" class="btn">clear</button>
+    <br>
+    <button onclick="appendValue('7')" class="btn">7</button>
+    <button onclick="appendValue('8')" class="btn">8</button>
+    <button onclick="appendValue('9')" class="btn">9</button>
+    <button onclick="appendValue('+')" class="btn">+</button>
+    <br>
+    <button onclick="appendValue('4')" class="btn">4</button>
+    <button onclick="appendValue('5')" class="btn">5</button>
+    <button onclick="appendValue('6')" class="btn">6</button>
+    <button onclick="appendValue('-')" class="btn">-</button>
+    <br>
+    <button onclick="appendValue('1')" class="btn">1</button>
+    <button onclick="appendValue('2')" class="btn">2</button>
+    <button onclick="appendValue('3')" class="btn">3</button>
+    <button onclick="appendValue('*')" class="btn">x</button>
+    <br>
+    <button onclick="appendValue('.')" class="btn">.</button>
+    <button onclick="appendValue('0')" class="btn">0</button>
+    <button onclick="calculate()" class="btn">=</button>
+    <button onclick="appendValue('/')" class="btn">/</button>
+</div>
+
+<script>
+    let display = document.getElementById('display');
+    let currentInput = '';
+    function appendValue(value){
+        currentInput += value;
+        updateDisplay();
+    }
+    function updateDisplay(){
+        display.value = currentInput;
+    }
+    function clearDisplay(){
+        display.value = '';
+        currentInput = '';
+    }
+    function calculate(){
+        display.value = eval(display.value);
+    }
+    function clearOne(){
+        currentInput = display.value.slice(0, -1);
+        updateDisplay();
+    }
+    function square(){
+        currentInput = eval(currentInput);
+        currentInput = currentInput ** 2;
+        updateDisplay();
+    }
+    function squareRoot(){
+        currentInput = eval(currentInput);
+        currentInput = Math.sqrt(currentInput);
+        updateDisplay();
+    }
+</script>
+
+</body>
+</html>
